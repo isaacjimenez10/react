@@ -4,7 +4,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://3.144.28.166:3000';
+// Usar la URL correcta de la API (HTTPS y puerto 8443)
+const API_URL = process.env.REACT_APP_API_URL || 'https://3.144.28.166:8443';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -14,22 +15,41 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    // Validar campos vacíos
     if (!username || !password) {
       setError('Por favor, completa todos los campos.');
       return;
     }
+
     setLoading(true);
+    setError(null); // Limpiar errores previos
+
     try {
+      console.log('Enviando solicitud a:', `${API_URL}/api/login`);
+      console.log('Datos enviados:', { username, password });
+
       const response = await axios.post(`${API_URL}/api/login`, {
         username,
         password,
       });
+
+      console.log('Respuesta del servidor:', response.data);
+
+      // Guardar el token en localStorage
       localStorage.setItem('token', response.data.token);
-      setError(null);
       navigate('/users');
     } catch (error) {
-      setError('No se pudo iniciar sesión. Verifica tus credenciales.');
       console.error('Error en login:', error);
+      if (error.response) {
+        // El servidor respondió con un error (por ejemplo, 401, 500)
+        setError(`Error del servidor: ${error.response.status} - ${error.response.data.message || 'No se pudo iniciar sesión. Verifica tus credenciales.'}`);
+      } else if (error.request) {
+        // No se recibió respuesta del servidor
+        setError('No se recibió respuesta del servidor. Verifica tu conexión a Internet o acepta el certificado autofirmado en el navegador.');
+      } else {
+        // Error al configurar la solicitud
+        setError(`Error: ${error.message}`);
+      }
     } finally {
       setLoading(false);
     }

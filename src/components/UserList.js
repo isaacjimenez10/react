@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './UserList.css';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://3.144.28.166:3000';
+// Usar la URL correcta de la API (HTTPS y puerto 8443)
+const API_URL = process.env.REACT_APP_API_URL || 'https://3.144.28.166:8443';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -23,17 +24,32 @@ const UserList = () => {
       }
 
       try {
+        console.log('Enviando solicitud a:', `${API_URL}/api/users`);
+        console.log('Token usado:', token);
+
         const response = await axios.get(`${API_URL}/api/users`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+
+        console.log('Respuesta del servidor:', response.data);
+
         setUsers(response.data);
         setError(null);
       } catch (error) {
-        setError('No se pudo obtener la lista de usuarios.');
         console.error('Error al obtener usuarios:', error);
-        if (error.response && error.response.status === 401) {
-          localStorage.removeItem('token');
-          navigate('/login');
+        if (error.response) {
+          // El servidor respondió con un error (por ejemplo, 401, 500)
+          setError(`Error del servidor: ${error.response.status} - ${error.response.data.message || 'No se pudo obtener la lista de usuarios.'}`);
+          if (error.response.status === 401) {
+            localStorage.removeItem('token');
+            navigate('/login');
+          }
+        } else if (error.request) {
+          // No se recibió respuesta del servidor
+          setError('No se recibió respuesta del servidor. Verifica tu conexión a Internet o acepta el certificado autofirmado en el navegador.');
+        } else {
+          // Error al configurar la solicitud
+          setError(`Error: ${error.message}`);
         }
       } finally {
         setLoading(false);
