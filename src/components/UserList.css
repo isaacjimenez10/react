@@ -1,67 +1,85 @@
 .userlist-container {
+    padding: 20px;
     max-width: 600px;
-    margin: 80px auto;
-    padding: 2rem;
-    background: #ffffffcc;
-    border-radius: 16px;
-    box-shadow: 0 0 24px rgba(0, 0, 0, 0.08);
-    font-family: 'Segoe UI', sans-serif;
+    margin: auto;
   }
   
   .userlist-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
   }
   
   .logout-button {
-    padding: 10px 16px;
     background-color: #dc3545;
-    color: white;
+    color: #fff;
     border: none;
-    border-radius: 8px;
+    padding: 8px 16px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background 0.3s;
   }
   
-  .logout-button:hover {
-    background-color: #c82333;
+  .form-container {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .form-container input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .form-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .form-buttons button {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .form-buttons .cancel-button {
+    background-color: #6c757d;
+    color: white;
   }
   
   .userlist {
     list-style: none;
     padding: 0;
-    margin: 0;
   }
   
   .userlist-item {
-    background: #f8f9fa;
-    padding: 12px 20px;
-    margin-bottom: 10px;
-    border-radius: 8px;
     display: flex;
     justify-content: space-between;
-    transition: background 0.2s;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
   }
   
-  .userlist-item:hover {
-    background: #e2e6ea;
+  .userlist-item .actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 8px;
   }
   
-  .loading,
-  .empty {
-    text-align: center;
-    font-style: italic;
-    color: #555;
+  .edit-button {
+    color: #007bff;
+  }
+  
+  .delete-button {
+    color: #dc3545;
   }
   
   .error {
-    color: #d9534f;
-    background: #f8d7da;
-    padding: 12px;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    text-align: center;
+    color: red;
+    margin-top: 10px;
   }
   
