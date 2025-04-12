@@ -1,38 +1,67 @@
-/* src/components/UserList.css */
-.user-list-container {
+.userlist-container {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 2rem;
+    background: #ffffffcc;
+    border-radius: 16px;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .userlist-header {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    margin-bottom: 1.5rem;
   }
   
-  .user-list-container ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .user-list-container li {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    width: 300px;
-    text-align: center;
-  }
-  
-  .user-list-container button {
-    margin-top: 20px;
-    padding: 10px 20px;
+  .logout-button {
+    padding: 10px 16px;
     background-color: #dc3545;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background 0.3s;
   }
   
-  .user-list-container button:hover {
+  .logout-button:hover {
     background-color: #c82333;
   }
   
-  .user-list-container .error {
-    color: red;
+  .userlist {
+    list-style: none;
+    padding: 0;
     margin: 0;
   }
+  
+  .userlist-item {
+    background: #f8f9fa;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    transition: background 0.2s;
+  }
+  
+  .userlist-item:hover {
+    background: #e2e6ea;
+  }
+  
+  .loading,
+  .empty {
+    text-align: center;
+    font-style: italic;
+    color: #555;
+  }
+  
+  .error {
+    color: #d9534f;
+    background: #f8d7da;
+    padding: 12px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
