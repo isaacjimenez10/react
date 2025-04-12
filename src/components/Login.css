@@ -1,73 +1,96 @@
+/* Login.css */
 .login-container {
     max-width: 400px;
     margin: 100px auto;
     padding: 2rem;
-    background: #ffffffcc;
+    background: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
   
   .login-title {
     margin-bottom: 1.5rem;
-    font-size: 24px;
-    color: #333;
+    font-size: 1.75rem;
+    color: #2c3e50;
+    font-weight: 600;
   }
   
   .login-form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
   }
   
   .login-input {
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #dfe6e9;
     border-radius: 8px;
     outline: none;
-    transition: border 0.3s;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
   }
   
   .login-input:focus {
-    border-color: #007bff;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    background-color: #fff;
   }
   
   .login-button {
-    padding: 12px;
-    font-size: 16px;
-    background: #007bff;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    background: #3498db;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
   }
   
   .login-button:disabled {
-    background: #999;
+    background: #bdc3c7;
     cursor: not-allowed;
+    transform: none;
   }
   
-  .login-button:hover:not(:disabled) {
-    background: #0056b3;
+  .login-button:not(:disabled):hover {
+    background: #2980b9;
+    transform: translateY(-1px);
+  }
+  
+  .login-button:not(:disabled):active {
+    transform: translateY(0);
   }
   
   .login-error {
-    color: #ff4d4f;
-    background: #ffeaea;
-    padding: 10px;
+    color: #e74c3c;
+    background: #fdecea;
+    padding: 0.75rem;
     margin-bottom: 1rem;
     border-radius: 8px;
+    border-left: 4px solid #e74c3c;
+    text-align: left;
   }
   
   .login-footer {
-    margin-top: 1rem;
-    font-size: 14px;
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: #7f8c8d;
   }
   
   .login-footer a {
-    color: #007bff;
+    color: #3498db;
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
   }
   
+  .login-footer a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+  }
